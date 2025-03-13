@@ -5,7 +5,6 @@ Objects:
             Leerlingnummer
             Laptopnummer
             Uitgifte Datum
-            Inlever datum
         Methodes
 
     UI Object
