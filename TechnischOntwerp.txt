@@ -1,0 +1,63 @@
+Objects & Classes
+Objects:
+    Data object
+        Attributen
+            Leerlingnummer
+            Laptopnummer
+            Uitgifte Datum
+            Inlever datum
+        Methodes
+
+    UI Object
+        Attributen
+            Locatie UI File
+            Button verbindingen
+
+        Methodes
+            Button functies
+            Uitlezen textboxes
+            Foutmeldingen
+
+
+    Data Handler
+        Attributen
+            Database verbinding
+
+
+        Methodes
+            Gegevens wegschrijven
+            Gegevens opvragen
+            
+
+
+Classes:
+    UI Class
+    
+    Data Handler
+
+UI
+    textboxes
+        Barcode leerling/docent
+        Barcode laptop
+
+
+Feedback
+    Geen dubbele handelingen
+    Mogelijk beginnen met alleen uitgave
+
+
+Functies huidge code:
+    registreer_uitleen
+        Slaat barcodes op in Database
+    markeer_als_ingeleverd
+        registreerd inleveren van een laptop
+    zoek_uitleen
+        Zoekt of een barcode van een leerling/docent/laptop momenteel open staat
+    exporteer_naar_excel
+        exporteert de database naar een excel bestand
+    update_uitleen_laptops
+        Update de lijst met uitgeleende laptops
+    markeer_als_terug_ingeleverd
+        markeert een laptop uit de lijst met laptops als ingeleverd
+    sluit_aflsuiten
+        Sluit het programma af
