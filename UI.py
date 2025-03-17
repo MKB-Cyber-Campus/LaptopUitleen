@@ -4,6 +4,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal, QThread, QObject
 from PyQt5.uic.uiparser import QtWidgets
 import sys
+import DataHandler
 
 class Ui(QMainWindow):
     def __init__(self):
@@ -17,6 +18,7 @@ class Ui(QMainWindow):
         self.ZoekUitleenButton.clicked.connect(self.ZoekUitleenButtonClicked)
         self.ExporteerNaarExcelButton.clicked.connect(self.ExporteerNaarExcelButtonClicked)
         self.ToggleFullscreenButton.clicked.connect(self.ToggleFullscreenButtonClicked)
+        self.datahandler = DataHandler()
 
     def WarnMSG(self, type):
         '''
@@ -29,7 +31,8 @@ class Ui(QMainWindow):
         msg.setWindowTitle("Er is iets fout gegaan")
         messagewarnings = {"EmptyPersoonBarcode" : "Het veld Leerling/Leraar barcode is leeg!",
                            "EmptyLaptopBarcode" : "Het veld Laptop Barcode is leeg!",
-                           "EmptySearchBarcode" : "Het veld Zoek op Barcode is leeg!"}
+                           "EmptySearchBarcode" : "Het veld Zoek op Barcode is leeg!",
+                           "BothBarcodeEmpty" : "De velden Leerling/Leraar barcode en Laptop Barcode zijn leeg!"}
         msg.setText(messagewarnings[type])
         msg.setIcon(QMessageBox.Warning)
         msg.exec_()
@@ -42,12 +45,17 @@ class Ui(QMainWindow):
         PersoonBarcode = self.GetPersonBarcode()
         LaptopBarcode = self.GetLaptopBarcode()
 
-        if PersoonBarcode == "":
+        if PersoonBarcode == "" and LaptopBarcode == "":
+            self.WarnMSG("BothBarcodeEmpty")
+            return
+        elif PersoonBarcode == "":
             self.WarnMSG("EmptyPersoonBarcode")
             return
-        if LaptopBarcode == "":
+        elif LaptopBarcode == "":
             self.WarnMSG("EmptyLaptopBarcode")
             return
+        
+        
 
     def ZoekUitleenButtonClicked(self):
         '''
