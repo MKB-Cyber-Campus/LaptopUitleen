@@ -4,7 +4,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal, QThread, QObject
 from PyQt5.uic.uiparser import QtWidgets
 import sys
-import DataHandler
+from DataHandler import DataHandler
 
 class Ui(QMainWindow):
     def __init__(self):
