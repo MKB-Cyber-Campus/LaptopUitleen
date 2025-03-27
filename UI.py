@@ -8,6 +8,7 @@ from DataHandler import DataHandler
 from datetime import datetime
 import openpyxl
 from openpyxl.styles import PatternFill, Font
+from LaptopUitleenUI import Ui_LaptopUitleenSysteem
 
 class Ui(QMainWindow):
     def __init__(self):
@@ -15,12 +16,14 @@ class Ui(QMainWindow):
         Start de UI        
         '''
         super(Ui, self).__init__()
-        uic.loadUi("C:/Users/marti/Dropbox/Hacklab/Opdrachten/LaptopUitleen/LaptopUitleen/LaptopUitleen/LaptopUitleenUI.ui", self)
+        self.ui = Ui_LaptopUitleenSysteem()
+        self.ui.setupUi(self)
+        # uic.loadUi(Ui_LaptopUitleenSysteem, self)
         self.show()
-        self.RegistreerUitleenButton.clicked.connect(self.RegistreerUitleenButtonClicked)
-        self.ZoekUitleenButton.clicked.connect(self.ZoekUitleenButtonClicked)
-        self.ExporteerNaarExcelButton.clicked.connect(self.ExporteerNaarExcelButtonClicked)
-        self.ToggleFullscreenButton.clicked.connect(self.ToggleFullscreenButtonClicked)
+        self.ui.RegistreerUitleenButton.clicked.connect(self.RegistreerUitleenButtonClicked)
+        self.ui.ZoekUitleenButton.clicked.connect(self.ZoekUitleenButtonClicked)
+        self.ui.ExporteerNaarExcelButton.clicked.connect(self.ExporteerNaarExcelButtonClicked)
+        self.ui.ToggleFullscreenButton.clicked.connect(self.ToggleFullscreenButtonClicked)
         self.datahandler = DataHandler()
 
     def WarnMSG(self, type):
@@ -113,10 +116,10 @@ class Ui(QMainWindow):
         '''
         if self.isFullScreen() == True:
             self.showNormal()
-            self.ToggleFullscreenButton.setText("Toggle Fullscreen")
+            self.ui.ToggleFullscreenButton.setText("Toggle Fullscreen")
         else:
             self.showFullScreen()
-            self.ToggleFullscreenButton.setText("Toggle Windowed")
+            self.ui.ToggleFullscreenButton.setText("Toggle Windowed")
 
 
     def GetPersonBarcode(self):
@@ -126,7 +129,7 @@ class Ui(QMainWindow):
         Return:
             De text uit PersoonBarcodeLineEdit
         '''
-        return self.PersoonBarcodeLineEdit.text()
+        return self.ui.PersoonBarcodeLineEdit.text()
 
 
     def GetLaptopBarcode(self):
@@ -136,7 +139,7 @@ class Ui(QMainWindow):
         Return:
             De text uit LaptopBarcodeLineEdit
         '''
-        return self.LaptopBarcodeLineEdit.text()
+        return self.ui.LaptopBarcodeLineEdit.text()
 
 
     def GetSearchBarcode(self):
@@ -146,22 +149,22 @@ class Ui(QMainWindow):
         Return
             De text uit ZoekLaptopBarcodeLineEdit
         '''
-        return self.ZoekLaptopBarcodeLineEdit.text()
+        return self.ui.ZoekLaptopBarcodeLineEdit.text()
 
 
     def ClearUitleenBoxes(self):
         '''
         Functie om invoerboxes leeg te maken nadat invoer is gebruikt of opgeslagen
         '''
-        self.PersoonBarcodeLineEdit.setText("")
-        self.LaptopBarcodeLineEdit.setText("")
+        self.ui.PersoonBarcodeLineEdit.setText("")
+        self.ui.LaptopBarcodeLineEdit.setText("")
 
 
     def ClearZoekBoxes(self):
         '''
         Functie om invoerbox leeg te maken nadat informatie is opgezocht
         '''
-        self.ZoekLaptopBarcodeLineEdit.setText("")
+        self.ui.ZoekLaptopBarcodeLineEdit.setText("")
 
 
     def MaakExcel(self, Registraties):
