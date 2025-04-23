@@ -26,7 +26,7 @@ class Ui(QMainWindow):
         self.ui.ToggleFullscreenButton.clicked.connect(self.ToggleFullscreenButtonClicked)
         self.datahandler = DataHandler()
 
-    def WarnMSG(self, type):
+    def WarnMSG(self, Errortype):
         '''
         Geeft een waarschuwing weer met uitleg als er fouten worden opgevangen
 
@@ -41,9 +41,10 @@ class Ui(QMainWindow):
                            "BothBarcodeEmpty" : "De velden Leerling/Leraar barcode en Laptop Barcode zijn leeg!",
                            "NoResult" : "Er is geen resultaat met de barcode gevonden",
                            "SaveError" : "Het bestand opslaan is niet gelukt"}
-        msg.setText(messagewarnings[type])
+        msg.setText(messagewarnings[Errortype])
         msg.setIcon(QMessageBox.Warning)
         msg.exec_()
+        
 
 
     def ResultMSG(self, Resultaat):
